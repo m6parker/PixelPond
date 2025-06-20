@@ -19,18 +19,15 @@ public class MapTransition : MonoBehaviour
     private void Awake()
     {
         confiner = FindFirstObjectByType<CinemachineConfiner2D>();
+
+        Debug.Log("awake " + confiner.BoundingShape2D);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Switched to: " + mapBoundary.name);
-
-        // if (virtualCamera != null)
-        // {
-        //     virtualCamera.GetComponent<CinemachineBrain>().enabled = false; // Disable brain to reset
-        //     virtualCamera.PreviousStateIsValid = false;
-        //     virtualCamera.GetComponent<CinemachineBrain>().enabled = true; // Re-enable brain
-        // }
+        virtualCamera.PreviousStateIsValid = false;
 
         // Debug.Log(virtualCam.Follow?.name ?? "Follow is null!");
         if (!collision.CompareTag("Player")) return;
@@ -42,8 +39,6 @@ public class MapTransition : MonoBehaviour
         confiner.InvalidateBoundingShapeCache();
 
         // Move the player
-        // UpdatePlayerPosition(collision.gameObject);
-        // StartCoroutine(DelayedMovePlayer(collision.gameObject));
         StartCoroutine(MovePlayerNextFrame(collision.gameObject));
     }
 
@@ -52,7 +47,6 @@ public class MapTransition : MonoBehaviour
     {
         yield return new WaitForEndOfFrame(); // Give Cinemachine a frame to catch up
         UpdatePlayerPosition(player);
-        virtualCamera.PreviousStateIsValid = false;
     }
     
 
@@ -60,6 +54,7 @@ public class MapTransition : MonoBehaviour
     {
         Vector3 newPos = player.transform.position;
         Debug.Log("going " + direction);
+        
 
         switch (direction)
         {
