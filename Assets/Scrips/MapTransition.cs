@@ -12,6 +12,7 @@ public class MapTransition : MonoBehaviour
     CinemachineConfiner2D confiner;
     [SerializeField] Direction direction;
     [SerializeField] float additivePos = 2f;
+    public CinemachineCamera virtualCamera;
     private enum Direction { Up, Down, Left, Right }
 
 
@@ -23,6 +24,13 @@ public class MapTransition : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Switched to: " + mapBoundary.name);
+
+        // if (virtualCamera != null)
+        // {
+        //     virtualCamera.GetComponent<CinemachineBrain>().enabled = false; // Disable brain to reset
+        //     virtualCamera.PreviousStateIsValid = false;
+        //     virtualCamera.GetComponent<CinemachineBrain>().enabled = true; // Re-enable brain
+        // }
 
         // Debug.Log(virtualCam.Follow?.name ?? "Follow is null!");
         if (!collision.CompareTag("Player")) return;
@@ -44,12 +52,14 @@ public class MapTransition : MonoBehaviour
     {
         yield return new WaitForEndOfFrame(); // Give Cinemachine a frame to catch up
         UpdatePlayerPosition(player);
+        virtualCamera.PreviousStateIsValid = false;
     }
     
 
     private void UpdatePlayerPosition(GameObject player)
     {
         Vector3 newPos = player.transform.position;
+        Debug.Log("going " + direction);
 
         switch (direction)
         {
