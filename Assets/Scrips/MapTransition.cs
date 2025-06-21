@@ -40,6 +40,8 @@ public class MapTransition : MonoBehaviour
 
         // Move the player
         StartCoroutine(MovePlayerNextFrame(collision.gameObject));
+
+        MapController_manual.Instance?.HighlightArea(mapBoundary.name);
     }
 
 
