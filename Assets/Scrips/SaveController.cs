@@ -16,7 +16,8 @@ public class SaveController : MonoBehaviour
         saveLocation = Path.Combine(Application.persistentDataPath, "saveData.json");
         inventoryController = FindObjectOfType<InventoryController>();
         hotbarController = FindObjectOfType<HotbarController>();
-        virtualCamera.PreviousStateIsValid = false;
+        virtualCamera = FindObjectOfType<CinemachineCamera>();
+        // if (virtualCamera != null) { virtualCamera.PreviousStateIsValid = false; }
         LoadGame();
 
     }
@@ -40,6 +41,7 @@ public class SaveController : MonoBehaviour
     {
         Debug.Log("loading game");
 
+
         if (File.Exists(saveLocation))
         {
             SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
@@ -48,13 +50,14 @@ public class SaveController : MonoBehaviour
             inventoryController.SetInventoryItems(saveData.inventorySaveData);
             hotbarController.SetHotbarItems(saveData.hotbarSaveData);
 
-           Debug.Log("mapboundary "+ FindFirstObjectByType<CinemachineConfiner2D>().BoundingShape2D);
+            Debug.Log("mapboundary " + FindFirstObjectByType<CinemachineConfiner2D>().BoundingShape2D);
 
         }
         else
         {
             SaveGame();
         }
+        virtualCamera.PreviousStateIsValid = false;
 
     }
 }
