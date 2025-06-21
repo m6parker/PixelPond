@@ -1,3 +1,5 @@
+using System.Drawing;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,6 +8,8 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 {
     Transform origionalParent;
     CanvasGroup canvasGroup;
+    public float minDropDistance = 2f;
+    public float maxDropDistance = 3f;
 
     void Start()
     {
@@ -50,7 +54,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 //slot has item so swap items
                 dropslot.currentItem.transform.SetParent(originalSlot.transform);
                 originalSlot.currentItem = dropslot.currentItem;
-                dropslot.currentItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                dropslot.currentItem.GetComponent<RectTransform>().anchoredPosition = UnityEngine.Vector2.zero;
             }
             else
             {
@@ -63,13 +67,48 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
         else
         {
-            //no slop under drop point
-            transform.SetParent(origionalParent);
+            if (!IsWithinInventory(eventData.position))
+            {
+                //drop 
+                DropItem(originalSlot);
+            }
+            else
+            {
+                //no slop under drop point
+                transform.SetParent(origionalParent);
+            }
+
         }
 
-        GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-
-
+        GetComponent<RectTransform>().anchoredPosition = UnityEngine.Vector2.zero;
     }
 
+    bool IsWithinInventory(UnityEngine.Vector2 mousePosition)
+    {
+        RectTransform inventoryRect = origionalParent.parent.GetComponent<RectTransform>();
+        return RectTransformUtility.RectangleContainsScreenPoint(inventoryRect, mousePosition);
+    }
+
+    void DropItem(ItemSlot origionalSlot)
+    {
+        origionalSlot.currentItem = null;
+        //find player
+        Transform playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (playerTransform == null)
+        {
+            Debug.LogError("Missing 'Player' Tag");
+            return;
+        }
+
+        //random drop pos
+        UnityEngine.Vector2 dropOffset = Random.insideUnitCircle.normalized * Random.Range(minDropDistance, maxDropDistance);
+        UnityEngine.Vector2 dropPosition = (UnityEngine.Vector2)playerTransform.position + dropOffset;
+
+        //instantiate gam object
+        Instantiate(gameObject, dropPosition, UnityEngine.Quaternion.identity);
+
+        //destroy the ui one
+        Destroy(gameObject);
+        
+    }
 }
