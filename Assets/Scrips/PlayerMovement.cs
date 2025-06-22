@@ -17,12 +17,19 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (PauseController.isGamePaused)
+        {
+            rb.linearVelocity = Vector2.zero; //stop movement
+            animator.SetBool("isSwimming", false);
+            return;
+        }
         rb.linearVelocity = moveInput * moveSpeed;
+        animator.SetBool("isSwimming", rb.linearVelocity.magnitude > 0);
+
     }
 
     public void Move(InputAction.CallbackContext context)
     {
-        animator.SetBool("isSwimming", true);
         if (context.canceled)
         {
             animator.SetBool("isSwimming", false);
