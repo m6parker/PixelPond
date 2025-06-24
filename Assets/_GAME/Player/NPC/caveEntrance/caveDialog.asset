@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: caveDialog
   m_EditorClassIdentifier: 
   npcName: Player
-  npcPortrait: {fileID: -6200162304896330011, guid: 601407a8d07a56946bc4afc4ad6c228d, type: 3}
+  npcPortrait: {fileID: 21300000, guid: 601407a8d07a56946bc4afc4ad6c228d, type: 3}
   dialogLines:
   - Hmmm... it's too dark in here
   - I can't see anything.
