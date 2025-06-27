@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - item
   layers:
   - Default
   - TransparentFX
@@ -44,11 +45,11 @@ TagManager:
   - name: underwater
     uniqueID: 1540533567
     locked: 0
-  - name: player
-    uniqueID: 937638311
-    locked: 0
   - name: ground
     uniqueID: 3031614003
+    locked: 0
+  - name: player
+    uniqueID: 937638311
     locked: 0
   - name: waterEdges
     uniqueID: 2649634425
