@@ -3,8 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags:
-  - item
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -43,28 +42,25 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: underwater
-    uniqueID: 3981067371
+    uniqueID: 1540533567
     locked: 0
-  - name: underwater_rocks
-    uniqueID: 2083159717
-    locked: 0
-  - name: character(aquatic)
-    uniqueID: 4082397349
+  - name: player
+    uniqueID: 937638311
     locked: 0
   - name: ground
-    uniqueID: 1942221391
+    uniqueID: 3031614003
     locked: 0
-  - name: behindEdgesWATER
-    uniqueID: 502378501
+  - name: waterEdges
+    uniqueID: 2649634425
     locked: 0
-  - name: frontground
-    uniqueID: 1968030479
+  - name: frontGround
+    uniqueID: 138582533
     locked: 0
   - name: water
-    uniqueID: 2898608663
+    uniqueID: 2086704655
     locked: 0
   - name: plants
-    uniqueID: 4282469757
+    uniqueID: 3773627831
     locked: 0
   m_RenderingLayers:
   - Default
