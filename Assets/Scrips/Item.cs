@@ -1,6 +1,5 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
-using UnityEngine.UI;
+// using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {

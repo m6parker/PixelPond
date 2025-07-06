@@ -1,5 +1,5 @@
 using System.Collections;
-using Microsoft.Unity.VisualStudio.Editor;
+// using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,13 +10,18 @@ using UnityEngine.UI;
 public class NPC : MonoBehaviour, IInteractable
 {
     public NPCDialog dialogData;
-    public GameObject dialogPanel;
-    public TMP_Text dialogText, nameText;
-    public UnityEngine.UI.Image portraitImage;
+    private DialogController dialogUI;
+    // public GameObject dialogPanel;
+    // public TMP_Text dialogText, nameText;
+    // public Image portraitImage;
 
     private int dialogIndex;
     private bool isTyping, isDialogActive;
 
+    private void Start()
+    {
+        dialogUI = DialogController.Instance;
+    }
 
     public bool CanInteract()
     {
@@ -45,13 +50,33 @@ public class NPC : MonoBehaviour, IInteractable
         if (isTyping)
         {
             StopAllCoroutines();
-            dialogText.SetText(dialogData.dialogLines[dialogIndex]);
+            dialogUI.SetDialogText(dialogData.dialogLines[dialogIndex]);
             isTyping = false;
 
         }
-        else if (++dialogIndex < dialogData.dialogLines.Length)
+
+        //clear choices, check enddialog lines, check if choices and display
+        dialogUI.ClearChoices();
+        if (dialogData.endDialogLines.Length > dialogIndex && dialogData.endDialogLines[dialogIndex])
         {
-            StartCoroutine(TypeLine());
+            EndDialog();
+            return;
+        }
+
+        foreach (DialogChoice dialogChoice in dialogData.choices)
+        {
+            if (dialogChoice.dialogIndex == dialogIndex)
+            {
+                //display choices
+                DisplayChoices(dialogChoice);
+                return;
+            }
+        }
+
+
+        if (++dialogIndex < dialogData.dialogLines.Length)
+        {
+            DisplayCurrentLine();
         }
         else
         {
@@ -63,22 +88,23 @@ public class NPC : MonoBehaviour, IInteractable
     {
         isDialogActive = true;
         dialogIndex = 0;
-        nameText.SetText(dialogData.npcName);
-        portraitImage.sprite = dialogData.npcPortrait;
-        dialogPanel.SetActive(true);
+
+        dialogUI.SetNPCInfo(dialogData.npcName, dialogData.npcPortrait);
+        dialogUI.showDialogUI(true);
+
         PauseController.SetPause(true);
 
-        StartCoroutine(TypeLine());
+        DisplayCurrentLine();
     }
 
     IEnumerator TypeLine()
     {
         isTyping = true;
-        dialogText.SetText("");
+        dialogUI.SetDialogText("");
 
         foreach (char letter in dialogData.dialogLines[dialogIndex])
         {
-            dialogText.text += letter;
+            dialogUI.SetDialogText(dialogUI.dialogText.text += letter);
             yield return new WaitForSeconds(dialogData.typingSpeed);
         }
 
@@ -92,12 +118,32 @@ public class NPC : MonoBehaviour, IInteractable
         }
     }
 
+    void DisplayChoices(DialogChoice choice)
+    {
+        for (int i = 0; i < choice.choices.Length; i++)
+        {
+            int nextIndex = choice.nextDialogIndexes[i];
+            dialogUI.CreateChoiceButton(choice.choices[i], () => ChooseOption(nextIndex));
+        }
+    }
+
+    void DisplayCurrentLine() {
+        StopAllCoroutines();
+        StartCoroutine(TypeLine());
+    }
+
+    void ChooseOption(int nextIndex) {
+        dialogIndex = nextIndex;
+        dialogUI.ClearChoices();
+        DisplayCurrentLine();
+    }
+
     public void EndDialog()
     {
         StopAllCoroutines();
         isDialogActive = false;
-        dialogText.SetText("");
-        dialogPanel.SetActive(false);
+        dialogUI.SetDialogText("");
+        dialogUI.showDialogUI(false);
         PauseController.SetPause(false);
 
     }
