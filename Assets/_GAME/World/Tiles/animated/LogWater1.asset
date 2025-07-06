@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: LogWater1
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 984740641, guid: 5ba8a89c81a6baa4da84415efd028239, type: 3}
-  - {fileID: 487723173, guid: 5ba8a89c81a6baa4da84415efd028239, type: 3}
-  - {fileID: 2087677487, guid: 5ba8a89c81a6baa4da84415efd028239, type: 3}
+  - {fileID: 2939011929571358508, guid: f92454ee84cb58647b394380e7898944, type: 3}
+  - {fileID: 1220133614742864330, guid: 7d1ac794b69827a468fd055696a3ddfa, type: 3}
+  - {fileID: -6933597890107413852, guid: d224027462be71145ba02b862b88773a, type: 3}
+  - {fileID: 4852613034957377634, guid: e312828c73fc53e4cb7f8e824219bbea, type: 3}
   m_MinSpeed: 1
   m_MaxSpeed: 2
   m_AnimationStartTime: 0

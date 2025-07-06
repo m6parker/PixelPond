@@ -17,7 +17,7 @@ MonoBehaviour:
   dialogLines:
   - Hello, my name is Pinkie
   - Can you bring me something shiney?
-  - I don't have all day
+  - Come find me when you have something
   - I'll find it myself
   autoProgressLines: 01010101
   endDialogLines: 00000101
