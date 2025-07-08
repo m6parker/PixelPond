@@ -89,6 +89,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4063137499524755108, guid: fb3779c128d74964881bfe8c19462371, type: 3}
+      propertyPath: ID
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063137499524755108, guid: fb3779c128d74964881bfe8c19462371, type: 3}
       propertyPath: Name
       value: 'Red Feather '
       objectReference: {fileID: 0}

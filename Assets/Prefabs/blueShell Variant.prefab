@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -572514300664641224, guid: 63accb256513a874e8e59ca32a0b0e1e, type: 3}
+      propertyPath: ID
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -572514300664641224, guid: 63accb256513a874e8e59ca32a0b0e1e, type: 3}
       propertyPath: Name
       value: Blue Shell
       objectReference: {fileID: 0}

@@ -21,6 +21,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4831421949084727446, guid: 019af9f8679e51041991c11bead20778, type: 3}
     - target: {fileID: 7276358736870055588, guid: 900c2076ff5d85649b6012a1952ab02b, type: 3}
+      propertyPath: ID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276358736870055588, guid: 900c2076ff5d85649b6012a1952ab02b, type: 3}
       propertyPath: Name
       value: Pink Feather
       objectReference: {fileID: 0}

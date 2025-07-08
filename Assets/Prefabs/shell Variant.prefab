@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -572514300664641224, guid: 63accb256513a874e8e59ca32a0b0e1e, type: 3}
+      propertyPath: ID
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -572514300664641224, guid: 63accb256513a874e8e59ca32a0b0e1e, type: 3}
       propertyPath: Name
       value: Snail Shell
       objectReference: {fileID: 0}
@@ -16,6 +20,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 4528569261525907327, guid: b823a8399116ce84eaf79fa1c7552393, type: 3}
+    - target: {fileID: 2636032328051285509, guid: 63accb256513a874e8e59ca32a0b0e1e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3266072597383362524, guid: 63accb256513a874e8e59ca32a0b0e1e, type: 3}
       propertyPath: m_Sprite
       value: 
