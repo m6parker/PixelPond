@@ -5,7 +5,18 @@ public class Item : MonoBehaviour
 {
     public int ID;
     public string Name;
+    internal int quantity = 1;
+    //int tmp text = quantityText
 
+    private void Awake()
+    {
+        //get, set quantity text
+        //updateQuantityDisplay()
+    }
+    // public void UpdateQuantityDisplay()
+    // {
+    //     quantityText
+    // }
     public virtual void useItem()
     {
         Debug.Log("using " + Name);

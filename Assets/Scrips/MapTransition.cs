@@ -20,13 +20,13 @@ public class MapTransition : MonoBehaviour
     {
         confiner = FindFirstObjectByType<CinemachineConfiner2D>();
 
-        Debug.Log("awake " + confiner.BoundingShape2D);
+        // Debug.Log("awake " + confiner.BoundingShape2D);
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Switched to: " + mapBoundary.name);
+        // Debug.Log("Switched to: " + mapBoundary.name);
         virtualCamera.PreviousStateIsValid = false;
 
         // Debug.Log(virtualCam.Follow?.name ?? "Follow is null!");
@@ -55,7 +55,7 @@ public class MapTransition : MonoBehaviour
     private void UpdatePlayerPosition(GameObject player)
     {
         Vector3 newPos = player.transform.position;
-        Debug.Log("going " + direction);
+        // Debug.Log("going " + direction);
         
 
         switch (direction)

@@ -43,7 +43,8 @@ public class SaveController : MonoBehaviour
             playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position,
             mapBoundary = FindFirstObjectByType<CinemachineConfiner2D>().BoundingShape2D.gameObject.name,
             inventorySaveData = inventoryController.GetInventoryItems(),
-            hotbarSaveData = hotbarController.GetHotbarItems()//,
+            hotbarSaveData = hotbarController.GetHotbarItems(),
+            questProgressData = QuestContoller.Instance.activateQuests
             // chestSaveData = GetChestsState();
         };
 
@@ -83,9 +84,10 @@ public class SaveController : MonoBehaviour
             inventoryController.SetInventoryItems(saveData.inventorySaveData);
             hotbarController.SetHotbarItems(saveData.hotbarSaveData);
 
+            QuestContoller.Instance.LoadQuestProgess(saveData.questProgressData);
             // LoadChestsState(saveData.chestSaveData);
 
-            Debug.Log("mapboundary " + FindFirstObjectByType<CinemachineConfiner2D>().BoundingShape2D);
+            // Debug.Log("mapboundary " + FindFirstObjectByType<CinemachineConfiner2D>().BoundingShape2D);
 
         }
         else

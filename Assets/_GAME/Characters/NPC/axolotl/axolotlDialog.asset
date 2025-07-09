@@ -18,9 +18,12 @@ MonoBehaviour:
   - Hello, my name is Pinkie
   - Can you bring me something shiney?
   - Come find me when you have something
-  - I'll find it myself
-  autoProgressLines: 01010101
-  endDialogLines: 00000101
+  - I'm not telling you my secret.
+  - Did you find it yet?
+  - ooh lala, a penny
+  - If you swim under that big log you can go to the other ponds.
+  autoProgressLines: 01010001000100
+  endDialogLines: 00000101010001
   autoProgreeDelay: 1.5
   typingSpeed: 0.05
   choices:
@@ -29,3 +32,7 @@ MonoBehaviour:
     - yep!
     - nope!
     nextDialogIndexes: 0200000003000000
+    givesQuest: 0100
+  questInProgessIndex: 4
+  questCompletedIndex: 5
+  quest: {fileID: 11400000, guid: 3cb783e8f9d9dcd40a712d5e5991151e, type: 2}

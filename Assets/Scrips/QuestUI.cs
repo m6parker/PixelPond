@@ -31,7 +31,7 @@ public class QuestUI : MonoBehaviour
         }
 
         //build new entries
-        foreach (var quest in testQuests)
+        foreach (var quest in QuestContoller.Instance.activateQuests) // TestQuest for testing 
         {
             GameObject entry = Instantiate(questEntryPrefab, questListContent);
             TMP_Text questNameText = entry.transform.Find("QuestNameText").GetComponent<TMP_Text>();
@@ -42,7 +42,7 @@ public class QuestUI : MonoBehaviour
             {
                 GameObject objTextGO = Instantiate(objectiveTextPrefab, objectiveList);
                 TMP_Text objText = objTextGO.GetComponent<TMP_Text>();
-                objText.text = $"{objective.description} ( {objective.currentAmount} / {objective.requiredAmount} )";
+                objText.text = $"{objective.description}\n( {objective.currentAmount} / {objective.requiredAmount} )";
             }
         }
     }

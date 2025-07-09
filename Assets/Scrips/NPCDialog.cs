@@ -16,6 +16,10 @@ public class NPCDialog : ScriptableObject
 
     public DialogChoice[] choices;
 
+    public int questInProgessIndex;
+    public int questCompletedIndex;
+    public Quest quest;
+
 }
 
 [System.Serializable]
@@ -26,7 +30,7 @@ public class DialogChoice
     public string[] choices; // player response options
     public int[] nextDialogIndexes; // where choice leads
 
-
+    public bool[] givesQuest; // if choice gives quest
 
 
 }

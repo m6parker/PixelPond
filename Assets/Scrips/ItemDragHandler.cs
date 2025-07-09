@@ -10,10 +10,12 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     CanvasGroup canvasGroup;
     public float minDropDistance = 2f;
     public float maxDropDistance = 3f;
+    private InventoryController inventoryController;
 
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        inventoryController = InventoryController.Instance;
 
     }
     public void OnBeginDrag(PointerEventData eventData)
@@ -109,6 +111,9 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         //destroy the ui one
         Destroy(gameObject);
+
+
+        InventoryController.Instance.RebuildItemCounts();
         
     }
 }
