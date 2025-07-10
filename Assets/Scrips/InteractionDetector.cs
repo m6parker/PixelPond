@@ -15,7 +15,6 @@ public class InteractionDetector : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-            Debug.Log("oninteract" + context);
 
         if (context.performed)
         {

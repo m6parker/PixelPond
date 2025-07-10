@@ -30,4 +30,12 @@ public class Item : MonoBehaviour
             ItemPickupUIController.Instance.ShowItemPickup(Name, itemIcon);
         }
     }
+
+    public int RemoveFromStack(int amount = 1)
+    {
+        int removed = Mathf.Min(amount, quantity);
+        quantity -= removed;
+        // UpdateQuantityDisplay
+        return removed;
+    }
 }

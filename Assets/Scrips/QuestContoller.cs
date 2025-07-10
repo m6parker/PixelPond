@@ -89,7 +89,8 @@ public class QuestContoller : MonoBehaviour
         if (quest != null) return false;
 
         Dictionary<int, int> requiredItems = new();
-
+        Debug.Log("items to remove: " + requiredItems);
+        
         foreach (QuestObjective objective in quest.objectives)
         {
             if (objective.type == ObjectiveType.CollectItem && int.TryParse(objective.objectiveID, out int itemID))

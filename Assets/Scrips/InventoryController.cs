@@ -129,7 +129,7 @@ public class InventoryController : MonoBehaviour
             if (slot?.currentItem?.GetComponent<Item>() is Item item && item.ID == itemID)
             {
                 int removed = Mathf.Min(amountToRemove, item.quantity);
-                // item.RemoveFromStack
+                item.RemoveFromStack(amountToRemove);
                 amountToRemove -= removed;
 
                 if (item.quantity == 0)
