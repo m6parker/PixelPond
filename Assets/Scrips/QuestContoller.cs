@@ -8,6 +8,7 @@ public class QuestContoller : MonoBehaviour
 
     public List<QuestProgess> activateQuests = new();
     private QuestUI questUI;
+    public List<string> handInQuestIDs = new();
 
 
     private void Awake()
@@ -52,6 +53,68 @@ public class QuestContoller : MonoBehaviour
         }
         Debug.Log("checkInventoryForQuests()");
         questUI.UpdateQuestUI();
+    }
+
+    public bool IsQuestCompleted(string questID) {
+        QuestProgess quest = activateQuests.Find(q => q.QuestID == questID);
+        return quest != null && quest.objectives.TrueForAll(o => o.IsCompleted);
+    }
+
+    public void HandInQuest(string questID)
+    {
+        // remove items
+        if (!RemoveRequiredItemsFromInventory(questID))
+        {
+            return; // missing items
+        }
+
+        // remove quest log
+        QuestProgess quest = activateQuests.Find(q => q.QuestID == questID);
+        if (quest != null)
+        {
+            handInQuestIDs.Add(questID);
+            activateQuests.Remove(quest);
+            questUI.UpdateQuestUI();
+        }
+    }
+
+    public bool IsQuestHandedIn(string questID)
+    {
+        return handInQuestIDs.Contains(questID);
+    }
+
+    public bool RemoveRequiredItemsFromInventory(string questID)
+    {
+        QuestProgess quest = activateQuests.Find(q => q.QuestID == questID);
+        if (quest != null) return false;
+
+        Dictionary<int, int> requiredItems = new();
+
+        foreach (QuestObjective objective in quest.objectives)
+        {
+            if (objective.type == ObjectiveType.CollectItem && int.TryParse(objective.objectiveID, out int itemID))
+            {
+                requiredItems[itemID] = objective.requiredAmount;
+            }
+        }
+
+        Dictionary<int, int> itemCounts = InventoryController.Instance.GetItemsCount();
+        foreach (var item in requiredItems)
+        {
+            if (itemCounts.GetValueOrDefault(item.Key) < item.Value)
+            {
+                // not enough items to complete quest
+                return false;
+            }
+        }
+
+        foreach (var itemRequirement in requiredItems)
+        {
+            // remove from inventory
+            InventoryController.Instance.RemoveItemsFromInventory(itemRequirement.Key, itemRequirement.Value);
+
+        }
+        return true;
     }
 
     public void LoadQuestProgess(List<QuestProgess> savedQuests)

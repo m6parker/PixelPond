@@ -14,7 +14,7 @@ public class NPC : MonoBehaviour, IInteractable
     private int dialogIndex;
     private bool isTyping, isDialogActive;
 
-    private enum QuestState {NotStarted, InProgress, Completed}
+    private enum QuestState { NotStarted, InProgress, Completed }
     private QuestState questState = QuestState.NotStarted;
 
     private void Start()
@@ -96,12 +96,12 @@ public class NPC : MonoBehaviour, IInteractable
         else if (questState == QuestState.InProgress)
         {
             dialogIndex = dialogData.questInProgessIndex;
-            
+
         }
         else if (questState == QuestState.Completed)
         {
-            dialogIndex =  dialogData.questCompletedIndex;
-            
+            dialogIndex = dialogData.questCompletedIndex;
+
         }
 
         isDialogActive = true;
@@ -119,8 +119,11 @@ public class NPC : MonoBehaviour, IInteractable
         if (dialogData.quest == null) return;
         string questID = dialogData.quest.questID;
 
-
-        if (QuestContoller.Instance.IsQuestActive(questID))
+        if (QuestContoller.Instance.IsQuestCompleted(questID) || QuestContoller.Instance.IsQuestHandedIn(questID))
+        {
+            questState = QuestState.Completed;
+        }
+        else if (QuestContoller.Instance.IsQuestActive(questID))
         {
             questState = QuestState.InProgress;
         }
@@ -162,12 +165,14 @@ public class NPC : MonoBehaviour, IInteractable
         }
     }
 
-    void DisplayCurrentLine() {
+    void DisplayCurrentLine()
+    {
         StopAllCoroutines();
         StartCoroutine(TypeLine());
     }
 
-    void ChooseOption(int nextIndex, bool givesQuest) {
+    void ChooseOption(int nextIndex, bool givesQuest)
+    {
         if (givesQuest)
         {
             QuestContoller.Instance.AcceptQuest(dialogData.quest);
@@ -180,12 +185,24 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void EndDialog()
     {
+
+        if (questState == QuestState.Completed && !QuestContoller.Instance.IsQuestHandedIn(dialogData.quest.questID))
+        {
+            // hand in completion
+            HandleQuestCompletion(dialogData.quest);
+        }
+
         StopAllCoroutines();
         isDialogActive = false;
         dialogUI.SetDialogText("");
         dialogUI.showDialogUI(false);
         PauseController.SetPause(false);
 
+    }
+
+    void HandleQuestCompletion(Quest quest)
+    {
+        QuestContoller.Instance.HandInQuest(quest.questID);
     }
 
 }
