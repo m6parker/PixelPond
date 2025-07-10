@@ -69,7 +69,7 @@ public class InventoryController : MonoBehaviour
 
             }
         }
-        Debug.Log("inventory is full!!!!"); // place for animation when inv is full
+        Debug.Log("inventory is full!"); // place for animation when inv is full
         return false;
     }
     public List<InventorySaveData> GetInventoryItems()
@@ -121,6 +121,7 @@ public class InventoryController : MonoBehaviour
 
     public void RemoveItemsFromInventory(int itemID, int amountToRemove)
     {
+        Debug.Log("RemoveItemsFromInventory");
         foreach (Transform slotTransform in inventoryPanel.transform)
         {
             if (amountToRemove <= 0) break;
@@ -129,14 +130,14 @@ public class InventoryController : MonoBehaviour
             if (slot?.currentItem?.GetComponent<Item>() is Item item && item.ID == itemID)
             {
                 int removed = Mathf.Min(amountToRemove, item.quantity);
-                item.RemoveFromStack(amountToRemove);
+                item.RemoveFromStack(removed);
                 amountToRemove -= removed;
 
-                if (item.quantity == 0)
-                {
-                    Destroy(slot.currentItem);
-                    slot.currentItem = null;
-                }
+                // if (item.quantity == 0)
+                // {
+                Destroy(slot.currentItem);
+                slot.currentItem = null;
+                // }
             }
         }
         RebuildItemCounts();

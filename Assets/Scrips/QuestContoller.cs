@@ -51,7 +51,6 @@ public class QuestContoller : MonoBehaviour
 
             }
         }
-        Debug.Log("checkInventoryForQuests()");
         questUI.UpdateQuestUI();
     }
 
@@ -90,7 +89,7 @@ public class QuestContoller : MonoBehaviour
 
         Dictionary<int, int> requiredItems = new();
         Debug.Log("items to remove: " + requiredItems);
-        
+
         foreach (QuestObjective objective in quest.objectives)
         {
             if (objective.type == ObjectiveType.CollectItem && int.TryParse(objective.objectiveID, out int itemID))
