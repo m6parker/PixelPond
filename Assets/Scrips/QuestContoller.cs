@@ -77,6 +77,22 @@ public class QuestContoller : MonoBehaviour
             activateQuests.Remove(quest);
             questUI.UpdateQuestUI();
         }
+
+        if (questID == "d6c60c1d-fa01-48e3-89e3-15fe9a05b518")
+        {
+            //find log obstical
+            Transform logTransform = GameObject.FindGameObjectWithTag("Obsticle")?.transform;
+            Vector3 logPosition = logTransform.position;
+            if (logTransform == null)
+            {
+                Debug.LogError("Missing 'Obsticle' Tag");
+                return;
+            }
+            Debug.Log("move log obsticle");
+            logPosition.x = -10;
+            logTransform.position = logPosition;
+
+        }
     }
 
     public bool IsQuestHandedIn(string questID)
