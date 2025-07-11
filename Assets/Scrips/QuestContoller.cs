@@ -61,9 +61,11 @@ public class QuestContoller : MonoBehaviour
 
     public void HandInQuest(string questID)
     {
+        Debug.Log("HandInQuest called for questID: " + questID);
         // remove items
         if (!RemoveRequiredItemsFromInventory(questID))
         {
+            Debug.Log("RemoveRequiredItemsFromInventory returned false for questID: " + questID);
             return; // missing items
         }
 
@@ -84,8 +86,16 @@ public class QuestContoller : MonoBehaviour
 
     public bool RemoveRequiredItemsFromInventory(string questID)
     {
+        // QuestProgess quest = activateQuests.Find(q => q.QuestID == questID);
+        // if (quest != null) return false;
+        Debug.Log("RemoveRequiredItemsFromInventory called for questID: " + questID);
         QuestProgess quest = activateQuests.Find(q => q.QuestID == questID);
-        if (quest != null) return false;
+        if (quest == null)
+        {
+            Debug.Log("Quest not found for questID: " + questID);
+            return false;
+        }
+
 
         Dictionary<int, int> requiredItems = new();
         Debug.Log("items to remove: " + requiredItems);
