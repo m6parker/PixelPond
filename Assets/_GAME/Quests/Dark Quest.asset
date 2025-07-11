@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4840f7423d333ba44abc78deab683316, type: 3}
+  m_Name: Dark Quest
+  m_EditorClassIdentifier: 
+  questID: D3b823061-5a9c-4230-a4f3-0044cd6b839f
+  questName: Dark Quest
+  description: Find a way to see inside the cave!
+  objectives:
+  - objectiveID: 9
+    description: Find a way to see inside the cave!
+    type: 0
+    requiredAmount: 1
+    currentAmount: 0

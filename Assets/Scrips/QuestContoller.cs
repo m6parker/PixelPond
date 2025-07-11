@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using UnityEngine;
@@ -62,8 +63,13 @@ public class QuestContoller : MonoBehaviour
     public void HandInQuest(string questID)
     {
         Debug.Log("HandInQuest called for questID: " + questID);
-        // remove items
-        if (!RemoveRequiredItemsFromInventory(questID))
+
+        if (questID == "D3b823061-5a9c-4230-a4f3-0044cd6b839f")
+        {
+            Debug.Log("cave coming soon");
+
+        }
+        else if(!RemoveRequiredItemsFromInventory(questID)) // remove items
         {
             Debug.Log("RemoveRequiredItemsFromInventory returned false for questID: " + questID);
             return; // missing items

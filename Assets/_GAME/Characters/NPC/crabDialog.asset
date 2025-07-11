@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b948615208610394c8a21f2a5675938a, type: 3}
+  m_Name: crabDialog
+  m_EditorClassIdentifier: 
+  npcName: Crab
+  npcPortrait: {fileID: 4033355307889638888, guid: ad7bc8d64876fa541be42790c5c62291, type: 3}
+  dialogLines:
+  - ...
+  - I want something pointy
+  - You don't have anything pointy enough
+  - You know where to find me.
+  - Then get off my beach
+  - That's point enough, I'll take it.
+  autoProgressLines: 010101010101
+  endDialogLines: 000001010101
+  autoProgreeDelay: 1
+  typingSpeed: 0.05
+  choices:
+  - dialogIndex: 1
+    choices:
+    - I can get that
+    - go get it yourself
+    nextDialogIndexes: 0300000004000000
+    givesQuest: 0100
+  questInProgessIndex: 2
+  questCompletedIndex: 5
+  quest: {fileID: 11400000, guid: 2133b846533681c4e94b94d0cfea927b, type: 2}

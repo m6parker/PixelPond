@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4840f7423d333ba44abc78deab683316, type: 3}
+  m_Name: Pointy Quest
+  m_EditorClassIdentifier: 
+  questID: 2f6cf6dd-b2d7-4dd4-9759-3503cf72e622
+  questName: Pointy Quest
+  description: Search the pond for something thats sharp!
+  objectives:
+  - objectiveID: 10
+    description: Search the pond for something thats sharp!
+    type: 0
+    requiredAmount: 1
+    currentAmount: 0
