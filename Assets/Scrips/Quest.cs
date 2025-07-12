@@ -9,6 +9,7 @@ public class Quest : ScriptableObject
     public string questName;
     public string description;
     public List<QuestObjective> objectives;
+    public List<QuestReward> rewards;
 
     private void OnValidate()
     {
@@ -21,44 +22,60 @@ public class Quest : ScriptableObject
 }
 
 
-    [System.Serializable]
-    public class QuestObjective
+[System.Serializable]
+public class QuestObjective
+{
+    public string objectiveID;
+    public string description;
+    public ObjectiveType type;
+    public int requiredAmount;
+    public int currentAmount;
+
+    public bool IsCompleted => currentAmount >= requiredAmount;
+}
+
+public enum ObjectiveType { CollectItem, DefeatEnemy, ReachLocation, TalkNPC, Custom }
+
+[System.Serializable]
+public class QuestProgess
+{
+    public Quest quest;
+    public List<QuestObjective> objectives;
+    public QuestProgess(Quest quest)
     {
-        public string objectiveID;
-        public string description;
-        public ObjectiveType type;
-        public int requiredAmount;
-        public int currentAmount;
+        this.quest = quest;
+        objectives = new List<QuestObjective>();
 
-        public bool IsCompleted => currentAmount >= requiredAmount;
-    }
-
-    public enum ObjectiveType { CollectItem, DefeatEnemy, ReachLocation, TalkNPC, Custom }
-
-    [System.Serializable]
-    public class QuestProgess
-    {
-        public Quest quest;
-        public List<QuestObjective> objectives;
-        public QuestProgess(Quest quest)
+        foreach (var obj in quest.objectives)
         {
-            this.quest = quest;
-            objectives = new List<QuestObjective>();
-
-            foreach (var obj in quest.objectives)
+            objectives.Add(new QuestObjective
             {
-                objectives.Add(new QuestObjective
-                {
-                    objectiveID = obj.objectiveID,
-                    description = obj.description,
-                    type = obj.type,
-                    requiredAmount = obj.requiredAmount,
-                    currentAmount = 0
-                });
-            }
+                objectiveID = obj.objectiveID,
+                description = obj.description,
+                type = obj.type,
+                requiredAmount = obj.requiredAmount,
+                currentAmount = 0
+            });
         }
-
-        public bool IsCompleted => objectives.TrueForAll(o => o.IsCompleted);
-
-        public string QuestID => quest.questID;
     }
+
+    public bool IsCompleted => objectives.TrueForAll(o => o.IsCompleted);
+
+    public string QuestID => quest.questID;
+}
+
+
+[System.Serializable]
+public class QuestReward
+{
+    public RewardType type;
+    public int rewardID;
+    public int amount = 1;
+
+}
+
+public enum RewardType
+{
+    Item, Pennies, Experience, Custom
+
+}

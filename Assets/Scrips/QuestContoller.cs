@@ -42,13 +42,13 @@ public class QuestContoller : MonoBehaviour
                 if (!int.TryParse(questObjective.objectiveID, out int itemID)) continue;
 
                 int newAmount = itemCounts.TryGetValue(itemID, out int count) ? Mathf.Min(count, questObjective.requiredAmount) : 0;
-                Debug.Log("Current Amount: " + questObjective.currentAmount);
+                // Debug.Log("Current Amount: " + questObjective.currentAmount);
                 
                 if (questObjective.currentAmount != newAmount)
                 {
                     questObjective.currentAmount = newAmount;
                 }
-                Debug.Log("newAmount: " + newAmount);
+                // Debug.Log("newAmount: " + newAmount);
 
             }
         }
@@ -120,7 +120,7 @@ public class QuestContoller : MonoBehaviour
 
 
         Dictionary<int, int> requiredItems = new();
-        Debug.Log("items to remove: " + requiredItems);
+        Debug.Log("items to remove: " + requiredItems.Values);
 
         foreach (QuestObjective objective in quest.objectives)
         {

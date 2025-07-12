@@ -22,8 +22,10 @@ public class Item : MonoBehaviour
         Debug.Log("using " + Name);
     }
 
-    public virtual void Pickup()
+    public virtual void ShowPopup()
     {
+        Debug.Log($"Showing popup for item: {gameObject.name}");
+
         Sprite itemIcon = GetComponent<UnityEngine.UI.Image>().sprite;
         if (ItemPickupUIController.Instance != null)
         {

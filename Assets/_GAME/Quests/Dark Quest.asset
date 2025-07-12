@@ -16,8 +16,9 @@ MonoBehaviour:
   questName: Dark Quest
   description: Find a way to see inside the cave!
   objectives:
-  - objectiveID: 9
+  - objectiveID: 7
     description: Find a way to see inside the cave!
     type: 0
     requiredAmount: 1
     currentAmount: 0
+  rewards: []

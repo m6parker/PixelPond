@@ -21,6 +21,8 @@ public class InventoryController : MonoBehaviour
     {
         itemDictionary = FindObjectOfType<ItemDictionary>();
         RebuildItemCounts();
+
+        // itemDictionary.LogItemDictionaryContents();
     }
 
     private void Awake()
