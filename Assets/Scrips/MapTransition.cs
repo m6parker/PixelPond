@@ -12,8 +12,9 @@ public class MapTransition : MonoBehaviour
     CinemachineConfiner2D confiner;
     [SerializeField] Direction direction;
     [SerializeField] float additivePos = 2f;
+    [SerializeField] Transform teleportTargetPosition;
     public CinemachineCamera virtualCamera;
-    private enum Direction { Up, Down, Left, Right }
+    private enum Direction { Up, Down, Left, Right, Teleport}
 
 
     private void Awake()
@@ -54,6 +55,13 @@ public class MapTransition : MonoBehaviour
 
     private void UpdatePlayerPosition(GameObject player)
     {
+        if (direction == Direction.Teleport)
+        {
+            player.transform.position = teleportTargetPosition.position;
+            return;
+        }
+
+
         Vector3 newPos = player.transform.position;
         // Debug.Log("going " + direction);
         
