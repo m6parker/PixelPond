@@ -11,6 +11,7 @@ public class SaveController : MonoBehaviour
     private HotbarController hotbarController;
     public CinemachineCamera virtualCamera;
     // private Chest[] chests;
+    // public GameObject controlsPanel;
 
 
 
@@ -19,7 +20,7 @@ public class SaveController : MonoBehaviour
     {
         InitializeComponents();
 
-        LoadGame();
+        LoadGame(); // need load game option in menu or start new game
 
     }
 
@@ -50,6 +51,19 @@ public class SaveController : MonoBehaviour
 
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
     }
+
+    public void SaveAndQuit()
+    {
+        SaveGame();
+        Debug.Log("saving game...");
+        Debug.Log("Quit Game");
+        Application.Quit();
+    }
+
+    // public void BackButton()
+    // {
+    //     controlsPanel.SetActive(false);
+    // }
 
     // private List<ChestSaveData> GetChestsState()
     // {

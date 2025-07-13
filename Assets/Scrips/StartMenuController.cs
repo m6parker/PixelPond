@@ -10,6 +10,7 @@ public class StartMenuController : MonoBehaviour
 
     public void OnExitClick()
     {
+        // UnityEditor.EditorApplication.isPlaying = false; //for testing in unity
         Application.Quit();
     }
 
