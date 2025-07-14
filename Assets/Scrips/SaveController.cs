@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.Cinemachine;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveController : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class SaveController : MonoBehaviour
 
         LoadGame(); // need load game option in menu or start new game
 
+        PauseController.SetPause(false);
     }
 
     [System.Obsolete]
@@ -57,7 +60,8 @@ public class SaveController : MonoBehaviour
         SaveGame();
         Debug.Log("saving game...");
         Debug.Log("Quit Game");
-        Application.Quit();
+        // Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 
     // public void BackButton()
@@ -80,6 +84,14 @@ public class SaveController : MonoBehaviour
     //     }
     //     return chestStates;
     // }
+
+    public void SaveNewGame()
+    {
+        inventoryController.SetInventoryItems(new List<InventorySaveData>());
+        hotbarController.SetHotbarItems(new List<InventorySaveData>());
+
+        SaveGame();
+    }
 
     // [System.Obsolete]
     public void LoadGame()
@@ -106,11 +118,7 @@ public class SaveController : MonoBehaviour
         }
         else
         {
-
-            inventoryController.SetInventoryItems(new List<InventorySaveData>());
-            hotbarController.SetHotbarItems(new List<InventorySaveData>());
-
-            SaveGame();
+            SaveNewGame();
         }
         virtualCamera.PreviousStateIsValid = false;
 
