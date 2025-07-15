@@ -1,8 +1,11 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartMenuController : MonoBehaviour
 {
+    private string SaveFilePath { get { return Application.persistentDataPath + "/saveData.json"; } }
+
 
     public GameObject Panel;
 
@@ -36,7 +39,12 @@ public class StartMenuController : MonoBehaviour
 
     public void OnClickYes()
     {
-        Panel.SetActive(false);
+        // Panel.SetActive(false);
+        if (File.Exists(SaveFilePath))
+        {
+            File.Delete(SaveFilePath);
+            Debug.Log("Saved Game Deleted.");
+        }
     }
 
     public void OnClickNo()
