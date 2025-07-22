@@ -6,6 +6,7 @@ TagManager:
   tags:
   - item
   - Obsticle
+  - CaveDoor
   layers:
   - Default
   - TransparentFX

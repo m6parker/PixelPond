@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: cave_water1
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 1519880533, guid: 8c8381b196bbc3841aad91952bb5a92b, type: 3}
-  - {fileID: 1697121722, guid: 8c8381b196bbc3841aad91952bb5a92b, type: 3}
-  - {fileID: 661536903, guid: 8c8381b196bbc3841aad91952bb5a92b, type: 3}
-  - {fileID: 1752927597, guid: 8c8381b196bbc3841aad91952bb5a92b, type: 3}
+  - {fileID: 1685811830, guid: 3d956766c56e95642a0d8e4329115777, type: 3}
+  - {fileID: 1930525017, guid: 3d956766c56e95642a0d8e4329115777, type: 3}
+  - {fileID: 1469907574, guid: 3d956766c56e95642a0d8e4329115777, type: 3}
+  - {fileID: 999426681, guid: 3d956766c56e95642a0d8e4329115777, type: 3}
   m_MinSpeed: 0.5
   m_MaxSpeed: 2
   m_AnimationStartTime: 0

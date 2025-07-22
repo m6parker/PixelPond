@@ -17,9 +17,9 @@ MonoBehaviour:
   dialogLines:
   - Hmmm... it's too dark in here
   - I can't see anything.
-  - I'm not going in there right now...
-  autoProgressLines: 010001
-  endDialogLines: 000001
+  - I'll use this glo stick to see where I'm going!
+  autoProgressLines: 010000
+  endDialogLines: 000101
   autoProgreeDelay: 1.5
   typingSpeed: 0.05
   choices:

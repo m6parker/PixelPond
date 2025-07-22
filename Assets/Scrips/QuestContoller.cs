@@ -69,7 +69,7 @@ public class QuestContoller : MonoBehaviour
             Debug.Log("cave coming soon");
 
         }
-        else if(!RemoveRequiredItemsFromInventory(questID)) // remove items
+        else if (!RemoveRequiredItemsFromInventory(questID)) // remove items
         {
             Debug.Log("RemoveRequiredItemsFromInventory returned false for questID: " + questID);
             return; // missing items
@@ -97,6 +97,21 @@ public class QuestContoller : MonoBehaviour
             Debug.Log("move log obsticle");
             logPosition.x = -10;
             logTransform.position = logPosition;
+
+        }
+        else if (questID == "D3b823061-5a9c-4230-a4f3-0044cd6b839f")
+        {
+            //find cave entry obstical
+            Transform caveTransform = GameObject.FindGameObjectWithTag("CaveDoor")?.transform;
+            Vector3 cavePosition = caveTransform.position;
+            if (caveTransform == null)
+            {
+                Debug.LogError("Missing 'CaveDoor' Tag");
+                return;
+            }
+            Debug.Log("move cave obsticle");
+            cavePosition.y = +5;
+            caveTransform.position = cavePosition;
 
         }
     }

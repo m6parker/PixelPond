@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: cave_water
+  m_Name: cave_101
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -875500268730495931, guid: 5d1601d039302b4428eae70b57bd1d4d, type: 3}
+  m_Sprite: {fileID: -525108638, guid: 3d956766c56e95642a0d8e4329115777, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
