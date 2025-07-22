@@ -8,6 +8,7 @@ public class DialogController : MonoBehaviour
     public static DialogController Instance { get; private set; }
 
     public GameObject dialogPanel;
+    public GameObject hotBar;
     public TMP_Text dialogText, nameText;
     public Image portraitImage;
     public Transform choiceContainer;
@@ -22,6 +23,7 @@ public class DialogController : MonoBehaviour
     public void showDialogUI(bool show)
     {
         dialogPanel.SetActive(show);
+        hotBar.SetActive(!show);
 
     }
 
