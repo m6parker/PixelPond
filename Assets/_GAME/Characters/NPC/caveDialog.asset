@@ -18,15 +18,15 @@ MonoBehaviour:
   - Hmmm... it's too dark in here
   - I can't see anything.
   - I'll use this glo stick to see where I'm going!
-  autoProgressLines: 010000
+  autoProgressLines: 010100
   endDialogLines: 000101
   autoProgreeDelay: 1.5
   typingSpeed: 0.05
   choices:
-  - dialogIndex: 1
+  - dialogIndex: 0
     choices:
     - leave
-    nextDialogIndexes: 02000000
+    nextDialogIndexes: 01000000
     givesQuest: 01
   questInProgessIndex: 1
   questCompletedIndex: 2
